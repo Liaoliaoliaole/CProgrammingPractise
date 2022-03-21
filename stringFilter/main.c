@@ -11,7 +11,6 @@
 #include<string.h>
 #include<ctype.h>
 #define ASCIILENGTH 256
-//#define MAXWORDSLINES 470000
 #define MAXWORDSLENGTH 50
 
 
@@ -20,7 +19,9 @@ int get_letters();
 void get_most_character();
 void get_most_letter(int* arr, int l, int* maxc, char* mch);
 void get_most_consonant(int* arr, int l, int* maxc, char* mch);
+int* count_words();
 void get_most_words();
+void get_palindromes();
 
 int main(void) {
     FILE* fp = fopen("words.txt", "r");
@@ -40,9 +41,9 @@ int main(void) {
                 break;
             case 'w':get_most_words();
                 break;
-                /*case 'p':get_palindromes();
+            case 'p':get_palindromes();
                     break;
-                case 'd':get_csnt_digraphs();
+            /*case 'd':get_csnt_digraphs();
                     break;*/
             case 'q': exit(0);
                 break;
@@ -73,8 +74,8 @@ int get_letters() {
     int charCount[ASCIILENGTH] = { 0 };
     int c;
     while ((c = fgetc(fp))) {
-        if (c == EOF) break;
-        charCount[c] = charCount[c] + 1;
+if (c == EOF) break;
+charCount[c] = charCount[c] + 1;
     }
     //form a new array:26 elements correspond with 26 letters
      //value of elements are the occurrence of each letter
@@ -107,7 +108,7 @@ void get_most_character() {
     printf("\n");
 }
 
-void get_most_letter(int* arr, int l, int *maxc, char *mch) {
+void get_most_letter(int* arr, int l, int* maxc, char* mch) {
     int max = arr[0];
     int most_char = 0;
     for (int i = 0; i < l; i++) {
@@ -115,12 +116,12 @@ void get_most_letter(int* arr, int l, int *maxc, char *mch) {
             max = arr[i];
             most_char = (i + 65);
         }
-    }  
+    }
     *mch = most_char;
     *maxc = max;
 }
 
-void get_most_consonant(int* arr, int l, int *maxc, char* mch) {
+void get_most_consonant(int* arr, int l, int* maxc, char* mch) {
     int max = 0;
     int most_csnt = 0;
     for (int i = 0; i < l; i++) {
@@ -133,31 +134,56 @@ void get_most_consonant(int* arr, int l, int *maxc, char* mch) {
     *maxc = max;
 }
 
-void get_most_words() {
-    char alphabet[26] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+int* count_words() {
+    char alphabet[26] = { 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' };
     FILE* fp = fopen("words.txt", "r");
     char word[MAXWORDSLENGTH];
     int wcount[26] = { 0 };
-    int j = 0; int i = 0;
-    while (fscanf(fp, "%s", word) == 1) {      
-            for (i = 0; i < 26; i++) {
-                if ((word[0] == alphabet[i]) || (word[0] == toupper(alphabet[i]))) {
-                    wcount[j]++;
-                }
-                j++;
-            }     
+    while (fscanf(fp, "%s", word) == 1) {
+        for (int i = 0; i < 26; i++) {
+            if ((word[0] == alphabet[i]) || (word[0] == toupper(alphabet[i]))) {
+                wcount[i]++;
+            }
+        }
     }
+    /*for (int x = 0; x < 26; x++) {
+    printf("Start with '%c' words appear %d times.\n", alphabet[x], wcount[x]);
+    }*/
     fclose(fp);
-    for (int x = 0; x < 26; x++) {
-    printf("Start with %c words appear %d times.", alphabet[x], wcount[x]);
-    }
-   
-    
-    
+    return wcount;
 }
 
+void get_most_words() {
+    int* arr = count_words();
+    int max = arr[0];
+    int most_word = 0;
+    for (int i = 0; i < 26; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+            most_word = (i + 65);
+        }
+    }
+    printf("Starting with '%c' words has the maximum count %d\n", most_word, max);
+    printf("\n");
+}
 
-
+void get_palindromes() {
+    FILE* fp = fopen("words.txt", "r");
+    char word[MAXWORDSLENGTH];
+    int wcount = 0;
+    
+    while (fscanf(fp, "%s", word) == 1) {
+        int left = 0;
+        int right = strlen(word) - 1;
+        while (right > left) {
+            if (word[left++] == word[right--]) {
+                wcount++;
+            }
+        }   
+    }
+    fclose(fp);
+    printf("Palindromes appear %d times intotal.\n", wcount);
+}
 
 
 
