@@ -22,6 +22,8 @@ void get_most_consonant(int* arr, int l, int* maxc, char* mch);
 int* count_words();
 void get_most_words();
 void get_palindromes();
+int substring_count(char* str, char* substr);
+void get_csnt_digraphs();
 
 int main(void) {
     FILE* fp = fopen("words.txt", "r");
@@ -43,8 +45,8 @@ int main(void) {
                 break;
             case 'p':get_palindromes();
                     break;
-            /*case 'd':get_csnt_digraphs();
-                    break;*/
+            case 'd':get_csnt_digraphs();
+                    break;
             case 'q': exit(0);
                 break;
             defalut:
@@ -185,7 +187,43 @@ void get_palindromes() {
     printf("Palindromes appear %d times intotal.\n", wcount);
 }
 
+void get_csnt_digraphs() {
+    FILE* fp = fopen("words.txt", "r");
+    char word[MAXWORDSLENGTH];
+    char cnst_d[11][3] = { {"ch"},{"ck"},{"gh"},{"kn"},{"mb"},{"ng"},{"ph"},{"sh"},{"th"},{"wh"},{"wr"}};
+    int sum_count=0;
+   
+    while (fscanf(fp, "%s", word) == 1) {
+        for (int i = 0; i < 11; i++) {
+           sum_count+=substring_count(word,cnst_d[i]);
+        }
+    }
+    fclose(fp);
+    printf("Consonant digraph occur %d times.\n",sum_count);
 
+}
+
+int substring_count(char* str, char* substr) {
+    int i, j;
+    int c_count=0, count=0;
+    for (i = 0; i < strlen(str);) {
+        j = 0;
+        c_count = 0;
+        while (str[i] == substr[j]) {
+            c_count++;
+            i++;
+            j++;
+        }
+        if (c_count == 2) {
+            count++;
+            c_count = 0;
+        }
+        else {
+            i++;
+        }
+    }
+    return count;
+}
 
 
 
