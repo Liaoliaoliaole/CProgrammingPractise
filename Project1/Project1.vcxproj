@@ -142,6 +142,7 @@
   <ItemGroup>
     <ClCompile Include="pascal.c" />
     <ClCompile Include="pasMath.c" />
+    <ClCompile Include="screen.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pasMath.h" />
