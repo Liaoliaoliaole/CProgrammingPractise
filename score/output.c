@@ -1,4 +1,5 @@
 #include "scores.h"
+#include <stdio.h>
 
 void print_score(int a[], int c) {
 	for (int i = 0; i < c; i++) {
@@ -9,4 +10,10 @@ void print_score(int a[], int c) {
 		}
 	}
 	printf("\n\n");
+}
+
+void print_bar(int c) {
+	for (int i = 0; i < c; i++) {
+		printf(" ");
+	}
 }

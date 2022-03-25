@@ -24,3 +24,14 @@ double avg_score(int a[], int c) {
 	}
 	return sum / c;
 }
+
+int get_segment_count(int a[], int c, int min, int max) {
+	int segmentC = 0;
+	for (int i = 0; i < c; i++) {
+		if (a[i] >= min && a[i] <= max) {
+			segmentC++;
+		}
+	}
+	return segmentC;
+}
+
