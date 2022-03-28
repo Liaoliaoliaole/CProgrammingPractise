@@ -17,9 +17,10 @@ What is the average connectivity of these 100000 numbers?
 #include "complexProj.h"
 #define MAXNUM 100000
 
+struct complexNum buf;
 struct complexNum cplx[MAXNUM-1];
 int count = 0;
-int cnctvt[MAXNUM - 1]={ 0 };
+//int cnctvt[MAXNUM - 1] = { 0 };
 
 int main() {
 	//complex_calculator();
@@ -30,7 +31,7 @@ int main() {
 		printf("Can't open file. ");
 		return 1;
 	}
-	struct complexNum buf, origin;
+	struct complexNum origin;
 	origin.re = 0;
 	origin.imag = 0;
 	int count5 = 0, count2 = 0;
@@ -57,8 +58,9 @@ int main() {
 	printNum_distanceLessThanFive(count5);
 	printNum_between(count2);
 	
-	get_connectivity(cplx,cnctvt,count-1);
-	printf("\nThe average connectivity is %.2lf.",avg_connectivity(cnctvt, count - 1));
+	//get_connectivity(cplx,cnctvt,count-1);
+	//printf("\nThe average connectivity is %.2lf.",avg_connectivity(cnctvt, count - 1));
+	printf("\nThe average connectivity is %.2lf.", geAvg_connectivity(cplx, count));
 
 	return 0;
 }

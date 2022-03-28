@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{f2b65672-800e-4e35-9468-9311c3e0c74f}</ProjectGuid>
-    <RootNamespace>structProj</RootNamespace>
+    <ProjectGuid>{887000fa-d154-4136-8134-57332a0fe0f9}</ProjectGuid>
+    <RootNamespace>calendar</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,17 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="complexMath.c" />
-    <ClCompile Include="input.c" />
+    <ClCompile Include="calMath.c" />
+    <ClCompile Include="io.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="output.c" />
+    <ClCompile Include="screen.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="complexProj.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="numbers.txt" />
-    <Text Include="Text.txt" />
+    <ClInclude Include="cldr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

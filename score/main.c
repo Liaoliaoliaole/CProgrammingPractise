@@ -6,9 +6,6 @@
 #include<windows.h>
 #endif
 
-void sort_score(int a[], int c);
-void print_score(int a[], int c);
-double avg_score(int a[], int c);
 
 
 int main(void)

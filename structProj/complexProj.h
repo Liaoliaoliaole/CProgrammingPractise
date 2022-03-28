@@ -30,5 +30,6 @@ int is_distanceLessThanFive(struct complexNum buf1, struct complexNum buf2);
 void printNum_distanceLessThanFive(int c);
 int count_between(struct complexNum buf);
 void printNum_between(int c);
-void get_connectivity(struct complexNum a[], int arr[], int c);
-double avg_connectivity(int arr[], int c);
+//void get_connectivity(struct complexNum a[], int arr[], int c);
+//double avg_connectivity(int arr[], int c);
+double geAvg_connectivity(struct complexNum a[], int c);

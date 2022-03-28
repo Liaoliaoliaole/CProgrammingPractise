@@ -60,21 +60,35 @@ int count_between(struct complexNum buf) {
 	return c;
 }
 
-void get_connectivity(struct complexNum a[],int arr[],int c) {
+//void get_connectivity(struct complexNum a[],int arr[],int c) {
+//	for (int i = 0; i < c - 1;) {
+//		for (int j = 0; j < c - 1; j++) {
+//			if ((i != j) && (is_distanceLessThanFive(a[i], a[j]) == 1)) {
+//				arr[i]++;
+//			}
+//		}
+//		i++;
+//	}
+//}
+//
+//double avg_connectivity(int arr[],int c) {
+//	double sum = 0;
+//	for (int i = 0; i < c; i++) {
+//		sum += arr[i];
+//	}
+//	return sum / c;
+//}
+
+double geAvg_connectivity(struct complexNum a[], int c) {
+	long int sum = 0;
+	double avg = (sum+0.0) / c;
 	for (int i = 0; i < c - 1;) {
 		for (int j = 0; j < c - 1; j++) {
 			if ((i != j) && (is_distanceLessThanFive(a[i], a[j]) == 1)) {
-				arr[i]++;
+				sum++;
 			}
 		}
 		i++;
 	}
-}
-
-double avg_connectivity(int arr[],int c) {
-	double sum = 0;
-	for (int i = 0; i < c; i++) {
-		sum += arr[i];
-	}
-	return sum / c;
+	return avg;		
 }
